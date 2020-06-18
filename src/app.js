@@ -21,7 +21,7 @@ app.post("/repositories", (request, response) => {
     title,
     url,
     techs,
-    like :0
+    likes :0
   }
   repositories.push(repository);
   response.json(repository)
@@ -56,7 +56,7 @@ app.delete("/repositories/:id", (request, response) => {
 
   repositories.splice(repositoryIndex,1);
 
-  return response.status(200).json();
+  return response.status(204).json();
 
 });
 
@@ -68,7 +68,7 @@ app.post("/repositories/:id/like", (request, response) => {
     return response.status(400).json({'error':"Repository not found"})
   }
 
-  repositories[repositoryIndex].like +=1;
+  repositories[repositoryIndex].likes +=1;
 
   return response.status(200).json(repositories[repositoryIndex]);
 });
